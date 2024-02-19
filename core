@@ -17,7 +17,10 @@ install() {
 
   #
   case $platform in
-  darwin) ;;
+  darwin)
+    # only amd64 support for darwin
+    arch="amd64"
+    ;;
   linux) ;;
   *)
     log::error "[$(timestamp)] unsupport platform: $platform"
@@ -30,11 +33,7 @@ install() {
     arch="aarch64"
     ;;
   amd64)
-    if [ "$platform" = "darwin" ]; then
-      arch="aarch64"
-    else
-      arch="x86_64"
-    fi
+    arch="x86_64"
     ;;
   *)
     log::error "[$(timestamp)] unsupport arch: $arch"
